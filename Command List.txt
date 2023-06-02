@@ -1,0 +1,368 @@
+8.
+man
+man man
+--help
+cp --help
+9.
+pwd
+==> print working directory 
+cd
+==> change directory
+10.
+ls
+==> lists files in the directory
+11.
+ls -l ==> Lists total files
+==> lists files in the directory with details
+12.
+ls -lh
+ls -l -h
+==> lists files in the directory with details in human readable format
+13.
+ls -lSh
+ls -lhS
+ls -Shl
+==> lists files in the directory with details ordered by size in human readable format
+14.
+ls -a
+==> lists all hidden files in the directory
+ls -A
+==> lists all hidden files in the directory except system directory hidden files
+15.
+logical address ==> cd Documents/
+absolute address ==> cd /home/sakib/Documents/
+==> starts from root
+17.
+cp ==> copies files from destination to target folder
+18.
+mv ==> moves files from destination to target folder
+==> renaming files
+20.rm -rf ==> removes a directory entirely
+       r ==> recursive
+	f==> force
+21.
+mkdir ==> creates directory
+rmdir ==> removes empty directories
+22.
+touch
+==> updates the timestamp of a certain file
+==> creates new empty files
+23.
+* Wildcard ==> All files
+mv * /
+rm *.mp3
+rm File*
+24.
+cat
+==> concatenate files together and print results to the screen
+==> If provided a single file it will print out its content only to the screen
+25.
+less /search q ==> quit
+==> text viewer that lets you scroll through text and search for strings within
+26.
+grep
+==> To filter out text from files or from other outputs
+grep "This" data
+==> case sensitive
+grep -i "This" data
+==> case insensitive
+grep -v "This" data
+==> prints out everything except that line
+grep -o "This" data
+==> prints out only the matched string or text
+grep -c "This" data
+==> counts the occurences with sensitivity
+grep -ci "This" data
+==> counts the occurences without sensitivity
+grep can also work by taking an input from an output of another command
+27.
+==> normally the output of a command is printed out to the screen, but we can change that with redirections operators.
+
+| : used to redirect the output from one command to the input of another. This is called "Piping"
+ls | grep "file1.txt"
+
+> : used to dump the output of a command into a file, overwriting what was in the file.
+ls > file2.txt
+
+>>: used to append the output of a command into a file
+ls >> file3.txt
+
+28.
+ifconfig  ==> ipconfig
+ifconfig | grep -i "loopback"
+echo "sakib ahmed"
+echo sakib ahmed
+echo "sakib ahmed" > output_file
+echo "sakib anik" >> output_file
+ifconfig > ifconfig_output
+29.
+find
+==> used to search files by diffrent criterias
+find /home -name "*.txt"
+find /home -name "Doc1.txt"
+find /boot/ -size +10M
+ls -lh /boot/initrd.img-5.15.0-71-generic
+30.
+du ==> disk usage
+==>
+reports the sizes of directory trees inclusive of all of their contents and the sizes of individual files.
+du -s
+==> size in bytes of the directory I'm currently standing in.
+du -sh
+==> human readable disk usage size
+du -h *
+==>
+human readable disk size allocated by directories and files
+31.
+Symbolic Links
+2 Types Links in linux
+i. Symbolic Links ==> ln -s [created by]
+ii. Hard Links    ==> ln
+ln -s /home/sakib/data shortcut
+echo "Text" >> shortcut
+33.
+clear
+Temporary Alias:
+alias cls='clear'
+alias cls="clear"
+alias cls=clear
+Permanent Alias:
+echo "alias cls='clear'" >> /home/sakib/.bash_aliases
+echo "alias rm='rm -i'" >> .bash_aliases
+34.
+vi ==> text editor
+==> notepad within terminal
+==> to edit a text file ==> i
+==> create a new empty text file
+
+vi File_text.txt
+:set nocompatible
+==> for working with arrowkeys temporarily
+echo "set nocompatible" >> ~/.vimrc
+==> for working with arrowkeys permanently
+36.
+Multiple Pipes | Multiple Piping 
+==> refining the output using different commands
+date
+date | cut -d " " -f 1
+date | cut -d " " -f 2
+date | cut -d " " -f 3
+date | cut -d " " -f 4
+date | cut -d " " -f 5
+date | cut -d " " -f 6
+head -n 1 ==> topmost line
+tail -n 1 ==> bottommost line
+==>	no of lines to show
+echo \" ==> "
+echo -e "Hello\nworld"
+echo -e 'Hello\nworld'
+echo Hello$'\n'world
+echo Hello ; echo world
+37.
+sed ==> stream editor
+cat some_text.txt | sed 's/My/mine/'
+sed 's/My/mine/' some_text.txt
+==> for first occurence
+sed -i 's/My/mine/' some_text.txt
+==> for permanent substitution
+cat some_text.txt | sed 's/My/mine/g'
+==> for all occurences
+cat some_text.txt | sed 's/\bMy\b/mine/g'
+==> for specific word all occurences
+Regular expression: identify a pattern by simple code
+cat some_text.txt | sed 's/[0-9][0-9]:[0-9][0-9]/**:**/g'
+==> 29:16 ==> **:**
+cat some_text.txt | sed 's/[0-9][0-9]:[0-9][0-9]/**:**/g' > file.txt
+==> saving the output in a file
+39.
+Linux OS is a multi user system.
+More than one user can use the computer as the same time.
+chmod ==> modify file access rights
+su    ==> switch to super user
+sudo  ==> run a command as super user
+chown ==> change file ownership
+chgrp ==> change the group
+To see the permissions for a file:
+ls -lh file_name
+Permission Code Sequence:
+rwxrwxrwx
+Owner[3]-Group[3]-Other[3]
+r ==> read
+w ==> write
+x ==> Execute
+- ==> file
+d ==> directory
+l ==> link
+u ==> user
+g ==> group
+o ==> others
+a ==> all
+chmod <u/g/o/a> <+-> <r/w/x> file
+chmod u+x file_name
+sudo chmod o+w file_name.txt
+chown ibrahim file_name
+chown root file_name
+chgrp root file_name
+To change the owner of a file you must be the super user.
+=> Log in session as root@ubuntu
+How to become a su?
+=> su
+sudo mkdir new_dir
+ls -lh new_dir/
+=> total 0
+41.
+BASH Script:
+-executable file that can run inside CLI
+-sort of a program for Linux CLI that is written in BASH language
+42.
+.sh ==> it's going to tell the vi it is a BASH Script
+first line:
+#!/bin/bash
+==> defines what type of executable file this is. is it bash,python or perl...
+Running a Script:
+./Hello_World.sh
+/home/sakib/Scripts/Hello_world.sh
+43.
+a="Hello World"
+b=640
+c=7.2
+echo $a $b $c
+$ ==> used to make the shell script understand that you do not want to echo the letter a but that a is actually referring to a variable.
+44.
+a=4
+b=3
+sum=$((a+b))
+diff=$((a-b))
+echo "The sum is : " $sum "and the difference is : " $diff
+46.
+arithmetic related operators:
+-lt ==> less than ==> <
+-gt ==> greater than ==> >
+-le ==> less than or equal ==> <=
+-ge ==> greater than or equal ==> >=
+-eq ==> equal ==> ==
+-ne ==> not equal ==> !=
+
+a=4
+b=3
+if [ $a -gt $b ]; then
+	echo $a is larger than $b$'\n'this is another line that will be printed out
+elif [ $a -eq $b ]; then
+	echo a is equal to b
+else
+	echo "a is not larger than b"
+fi	 
+48.
+#!/bin/bash
+
+clear
+
+echo Please enter a name
+read a
+echo Please enter another name
+read b
+
+if [ $a = "John" ] && [ $b = "John" ]
+then
+	echo Both names are John.
+elif [ $a = "Mark" ] || [ $b = "Mark" ]; then
+	echo one of the names is Mark.
+else
+	echo No Conditions found!
+fi
+49.
+if with strings ==>
+use
+	= 	!=
+operators for matching or comparing strings
+52.
+for loop:
+for i in {1..10}; do
+	echo $i Line printed
+done
+
+for i in `ls`; do
+	echo File Name: $i 
+done
+53.
+while Loop:
+n=1
+
+while [ $n -le 10 ]; do
+	echo Line Number: $n
+	n=$(( n+1 ))
+done
+
+#!/bin/bash
+
+clear
+
+n=1
+
+while [ true ]; do
+	read a
+	if [ $a = "shegangbang" ]; then
+		break
+	fi
+	echo $a
+done
+
+54.
+Passing Arguments:
+#!/bin/bash
+if [ "$1" = "-y" ]; then
+	echo YES
+elif [ "$1" = "-n" ]; then
+	echo NO
+fi
+56.
+Functions:
+#!/bin/bash
+
+function get_info
+{
+	echo Please enter your name:
+	read name
+	echo Please enter your age:
+	read age
+	echo Please enter your email address:
+	read email
+}
+echo The function will now run ...
+get_info
+
+#!/bin/bash
+
+function sqr
+{
+	echo $(( $1 * $1 ))
+}
+echo Please enter a number:
+read num
+sqr num
+
+56.
+Creating Menus:
+#!/bin/bash
+while [ true ]; do
+	echo "1)Option 1"
+	echo "2)Option 2"
+	echo "3) Quit"
+	echo "#?"
+	read input
+	if [ $input = 1 ]; then
+		echo Option 1 Selected!
+	elif [ $input = 2 ]; then
+		echo Option 2 Selected!
+	elif [ $input = 3 ]; then
+		echo Exiting...
+		exit
+	else
+		echo Invalid Selection!
+	fi
+done
+
+58.
+#comments
+hostname
+who
